@@ -1,0 +1,25 @@
+
+
+<div
+  class="table-responsive"
+>
+  <table
+    class="table table-primary"
+  >
+    <thead>
+      <tr>
+        <th scope="col">Origin</th>
+        <th scope="col">Flight Number</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="" *ngFor="let arrival of arrivals ">
+        <td scope="row">{{arrival.origin}}</td>
+        <td>{{arrival.flightNumber}}</td>
+        <td>{{arrival.status}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
