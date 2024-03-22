@@ -21,7 +21,7 @@ export class ArrivalsPageComponent implements OnInit {
 
   ngOnInit() {
     this.$flightState.subscribe((state: FlightState) => {
-      console.log('data', state);
+      console.log('arrivals-data', state);
       this.arrivals = [...state.arrivals];
     });
   }

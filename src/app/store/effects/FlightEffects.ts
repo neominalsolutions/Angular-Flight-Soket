@@ -21,9 +21,10 @@ export class FlightEffects {
       switchMap(() =>
         // araya girilen işlemi flightService devret.
         this.flightService.fetchFlights().pipe(
-          map((response) =>
-            fetchFlightSuccess({ data: { arrivals: response } })
-          ),
+          map((response) => {
+            console.log('effects');
+            return fetchFlightSuccess({ data: { arrivals: response } });
+          }),
           catchError((err: any) => of(fetchFlightError(err)))
         )
       )

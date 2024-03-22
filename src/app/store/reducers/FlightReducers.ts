@@ -17,27 +17,32 @@ export const flightReducer = createReducer(
   initialState,
   on(insertItem, (state: FlightState, payload: any) => {
     console.log('insert-data', payload);
-    const exist = state.arrivals.find((x) => x.id !== payload.id);
+    const exist = state.arrivals.find((x) => x.id === payload.id);
+    console.log('exist', exist);
 
     if (exist == undefined) {
       console.log('exist', exist);
-      const _arrivals = [...state.arrivals, payload];
+      const _arrivals = [...state.arrivals, payload]; // yeni bir değişken referans üzerinden state güncelliyoruz.
+      // Not state deki her bir nesneyi immutable olarak görürür bu sebeple state üzerinden bir değeri güncellemeye izin vermez
+      // state.arrivals = [state.arrivals, payload];
+      // return state;
+
       return {
         ...state,
         arrivals: _arrivals,
       };
     }
 
-    return { ...state };
+    return state;
   }),
   on(updateItem, (state: FlightState, payload: any) => {
     const exist = state.arrivals.find((x) => x.id === payload.id);
 
-    if (exist) {
+    if (exist) { // update işlemi
       const _arrivals = state.arrivals.map((record) => {
         if (record.id === payload.id) {
           console.log('eşit');
-          return { ...payload };
+          return { ...payload }; // immutable oludğu için {... state} spread ile yeni referan söner.
         } else {
           return { ...record };
         }
@@ -45,7 +50,7 @@ export const flightReducer = createReducer(
 
       return { ...state, arrivals: _arrivals };
     } else {
-      const _arrivals = [...state.arrivals, payload];
+      const _arrivals = [...state.arrivals, payload]; // Insert işlemi
       return { ...state, arrivals: _arrivals };
     }
   }),
@@ -59,5 +64,6 @@ export const flightReducer = createReducer(
     return { ...state, arrivals: payload.data.arrivals };
   })
 );
+// async olan yapılar için state güncellemek için bir action açıyoruz.
 
 // async olarak tanımlanan durumlarda flight success olduğunda fetchFlightSuccess ile payload aldığın ile client state güncelle

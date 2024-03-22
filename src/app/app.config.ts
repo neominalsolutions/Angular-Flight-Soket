@@ -11,13 +11,13 @@ import { FlightEffects } from './store/effects/FlightEffects';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes), // store tanımı yap
-    provideStore({
+    provideStore({ // store.tsx dosyasındakini aynısı
       flightState: flightReducer,
     }), // devTools aktif et
-    provideStoreDevtools({
+    provideStoreDevtools({ // dev tools ayarı
       maxAge: 25,
     }),
-    provideEffects([FlightEffects]),
+    provideEffects([FlightEffects]), // varsa effeklerin tanımı
     // efectsleri dizi olarak göster
   ],
 };

@@ -6,7 +6,7 @@ export class FlightService {
   constructor() {}
 
   fetchFlights() {
-    console.log('fligh-service');
+    console.log('flight-service');
     return of([
       {
         origin: 'sun-express31',

@@ -7,7 +7,7 @@ import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 })
 export class WebSocketService {
   private socketConnection$!: WebSocketSubject<any>;
-  public socket$!: Observable<any>;
+  public socket$!: Observable<any>; // socket nesnesi ile herhangi bir tipte veri dinleme işlemi yapılıyor
 
   constructor() {
     this.socketConnection$ = webSocket({
